@@ -1,17 +1,17 @@
-#ifndef SENSORS_H
-#define SENSORS_H
+#pragma once
+
+#include "esp_err.h"
+#include <stdint.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/* Inicializa os sensores.
- * Depois a gente separa sensores lentos/rápidos de forma decente.
- */
-void sensors_init(void);
+esp_err_t sensors_init(void);
+
+int sensors_get_ldr_raw(void);
+int sensors_get_ldr_threshold(void);
 
 #ifdef __cplusplus
 }
 #endif
-
-#endif // SENSORS_H

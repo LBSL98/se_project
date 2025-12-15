@@ -10,7 +10,7 @@
 
 #define LDR_ADC_CHANNEL      ADC1_CHANNEL_4   // GPIO32
 #define LDR_ADC_WIDTH        ADC_WIDTH_BIT_12
-#define LDR_ADC_ATTEN        ADC_ATTEN_DB_11  // ~0..3.3V
+#define LDR_ADC_ATTEN        ADC_ATTEN_DB_12  // ~0..3.3V
 
 // LED só para debug visual (use um pino livre, aqui GPIO2)
 #define LDR_LED_GPIO         GPIO_NUM_2

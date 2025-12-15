@@ -8,6 +8,7 @@
 #include "esp_log.h"
 #include <stdbool.h>
 
+
 #define LDR_ADC_CHANNEL      ADC1_CHANNEL_4   // GPIO32
 #define LDR_ADC_WIDTH        ADC_WIDTH_BIT_12
 #define LDR_ADC_ATTEN        ADC_ATTEN_DB_12  // ~0..3.3V
@@ -15,7 +16,7 @@
 // LED só para debug visual (use um pino livre, aqui GPIO2)
 #define LDR_LED_GPIO         GPIO_NUM_2
 
-#define LDR_DELTA_DEFAULT    50               // margem pra escurecer
+#define LDR_DELTA_DEFAULT    80               // margem pra escurecer
 #define LDR_CALIB_SAMPLES    200              // 200 amostras de calibração
 #define LDR_CALIB_DELAY_MS   10               // 10 ms entre amostras
 #define LDR_SAMPLE_PERIOD_MS 500              // leitura a cada 0,5 s

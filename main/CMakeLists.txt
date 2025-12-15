@@ -1,5 +1,5 @@
 idf_component_register(
     SRCS "app_main.c"
     INCLUDE_DIRS "."
-    REQUIRES comm_wifi drivers_motors drivers_sensors safety control esp_timer
+    REQUIRES comm_wifi drivers_motors drivers_sensors safety control esp_timer drivers_temp
 )

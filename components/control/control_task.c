@@ -8,23 +8,15 @@
 
 static const char *TAG = "control_task";
 
-/* -------------------------------------------------------------------------- *
- *  Configuração da task de controle
- * -------------------------------------------------------------------------- */
+#define CONTROL_TASK_STACK_SIZE    4096
+#define CONTROL_TASK_PRIORITY      5
+#define CONTROL_LOOP_PERIOD_MS     100     // 10 Hz (bem abaixo do watchdog de 500 ms)
 
-// Atenção: o safety_supervisor usa WATCHDOG_TIMEOUT = 500 ms.
-// Então aqui mandamos comandos a cada 100 ms para NUNCA disparar o fail-safe
-// em condição normal. O timeout só deve disparar depois que a task "morre".
-#define CONTROL_TASK_STACK_SIZE      4096
-#define CONTROL_TASK_PRIORITY        5
-#define CONTROL_LOOP_PERIOD_MS       100     // 100 ms entre comandos (10 Hz)
-#define CONTROL_NORMAL_ITERATIONS    10      // após 10 ciclos, simulamos travamento
+// deixe 0 em produção
+#define CONTROL_SIMULATE_CRASH     0
+#define CONTROL_CRASH_AFTER_ITERS  10
 
 static TaskHandle_t s_control_task_handle = NULL;
-
-/* -------------------------------------------------------------------------- *
- *  Task de Controle
- * -------------------------------------------------------------------------- */
 
 static void control_task_loop(void *arg)
 {
@@ -33,65 +25,40 @@ static void control_task_loop(void *arg)
     ESP_LOGI(TAG, "Inicializando control_task...");
 
     int8_t speed = 0;
-    int    iteration = 0;
-
-    ESP_LOGI(TAG,
-             "control_task iniciada. Enviando comandos normais por %d iteracoes.",
-             CONTROL_NORMAL_ITERATIONS);
+    uint32_t iter = 0;
 
     while (1) {
-        iteration++;
+        iter++;
 
-        if (iteration <= CONTROL_NORMAL_ITERATIONS) {
-            /* --------------------------------------------------------------
-             *  Comportamento "normal":
-             *  - Acelera em degraus de 10%: 10, 20, ..., 100
-             *  - A cada 100 ms manda um novo comando pro safety_supervisor
-             * -------------------------------------------------------------- */
-            speed += 10;
-            if (speed > 100) {
-                speed = 10;
-            }
-
-            ESP_LOGI(TAG,
-                     "Gerando comando de velocidade (bug/intent): %d (iter=%d)",
-                     speed, iteration);
-
-            control_cmd_t cmd = {
-                .timestamp_ms  = (uint32_t)(xTaskGetTickCount() * portTICK_PERIOD_MS),
-                .speed_percent = speed,
-            };
-
-            BaseType_t ok = safety_post_command(&cmd);
-            if (ok != pdTRUE) {
-                ESP_LOGW(TAG,
-                         "Fila de safety cheia ou nao inicializada. Comando descartado.");
-            }
-
-            vTaskDelay(pdMS_TO_TICKS(CONTROL_LOOP_PERIOD_MS));
-        } else {
-            /* --------------------------------------------------------------
-             *  SIMULAÇÃO DE FALHA / TRAVAMENTO
-             *
-             *  Aqui simulamos o pior caso: a task "morre" e para de enviar
-             *  comandos. A SafetyTask continua rodando, percebe que ninguém
-             *  mais está publicando na fila por > 500 ms e:
-             *      - Loga o TIMEOUT
-             *      - Zera todos os motores (fail-safe)
-             *
-             *  Isso é exatamente o comportamento que você viu no log:
-             *  TIMEOUTs periódicos + motores em 0%.
-             * -------------------------------------------------------------- */
-            ESP_LOGE(TAG,
-                     "Simulando TRAVAMENTO: parando envio de comandos e encerrando control_task.");
-            vTaskDelete(NULL);   // NUNCA retorna
+#if CONTROL_SIMULATE_CRASH
+        if (iter > CONTROL_CRASH_AFTER_ITERS) {
+            ESP_LOGE(TAG, "Simulando travamento: encerrando control_task.");
+            vTaskDelete(NULL);
         }
+#endif
+
+        // Exemplo simples: sobe 10..80 e volta
+        speed += 10;
+        if (speed > 80) speed = 10;
+
+        control_cmd_t cmd = {
+            .timestamp_ms  = (uint32_t)(xTaskGetTickCount() * portTICK_PERIOD_MS),
+            .speed_percent = speed,
+        };
+
+        BaseType_t ok = safety_post_command(&cmd);
+        if (ok != pdTRUE) {
+            ESP_LOGW(TAG, "Fila do safety cheia/indisponível. Comando descartado.");
+        }
+
+        // log mais leve (a cada ~1s)
+        if ((iter % 10) == 0) {
+            ESP_LOGI(TAG, "cmd speed=%d%% (iter=%lu)", speed, (unsigned long)iter);
+        }
+
+        vTaskDelay(pdMS_TO_TICKS(CONTROL_LOOP_PERIOD_MS));
     }
 }
-
-/* -------------------------------------------------------------------------- *
- *  Inicialização pública
- * -------------------------------------------------------------------------- */
 
 void control_task_init(void)
 {
@@ -104,7 +71,7 @@ void control_task_init(void)
         NULL,
         CONTROL_TASK_PRIORITY,
         &s_control_task_handle,
-        0   // Core 0 (safety está no Core 1)
+        0
     );
 
     if (res != pdPASS) {

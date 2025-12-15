@@ -1,0 +1,5 @@
+components/drivers_sensors/CMakeLists.txt:1:idf_component_register(
+components/safety/CMakeLists.txt:1:idf_component_register(
+components/drivers_motors/CMakeLists.txt:1:idf_component_register(
+components/control/CMakeLists.txt:1:idf_component_register(
+components/comm_wifi/CMakeLists.txt:1:idf_component_register(

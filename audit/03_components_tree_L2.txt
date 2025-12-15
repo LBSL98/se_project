@@ -1,0 +1,23 @@
+components
+├── comm_wifi
+│   ├── CMakeLists.txt
+│   ├── wifi_comm.c
+│   └── wifi_comm.h
+├── control
+│   ├── CMakeLists.txt
+│   ├── control_task.c
+│   └── control_task.h
+├── drivers_motors
+│   ├── CMakeLists.txt
+│   ├── motors_driver.c
+│   └── motors_driver.h
+├── drivers_sensors
+│   ├── CMakeLists.txt
+│   ├── sensors.c
+│   └── sensors.h
+└── safety
+    ├── CMakeLists.txt
+    ├── safety_supervisor.c
+    └── safety_supervisor.h
+
+5 directories, 15 files

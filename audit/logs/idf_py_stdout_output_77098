@@ -1,0 +1,438 @@
+dr=00030020 vaddr=400d0020 size=7479ch �ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15660
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (30) boot: ESP-IDF v5.3.4-603-g563f462986 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Dec  9 2025 21:47:13[0m
+[0;32mI (32) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v1.0[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (45) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (54) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (63) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=181e0h ( 98784) map[0m
+[0;32mI (139) esp_image: segment 1: paddr=00028208 vaddr=3ffb0000 size=03f3ch ( 16188) load[0m
+[0;32mI (145) esp_image: segment 2: paddr=0002c14c vaddr=40080000 size=03ecch ( 16076) load[0m
+[0;32mI (152) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=7479ch (477084) map[0m
+[0;32mI (317) esp_image: segment 4: paddr=000a47c4 vaddr=40083ecc size=13aach ( 80556) load[0m
+[0;32mI (360) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (360) boot: Disabling RNG early entropy source...[0m
+[0;32mI (373) cpu_start: Multicore app[0m
+[0;32mI (381) cpu_start: Pro cpu start user code[0m
+[0;32mI (381) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (381) app_init: Application information:[0m
+[0;32mI (384) app_init: Project name:     M.T.E.X[0m
+[0;32mI (389) app_init: App version:      1[0m
+[0;32mI (393) app_init: Compile time:     Dec  9 2025 21:47:04[0m
+[0;32mI (399) app_init: ELF file SHA256:  71008f7ed...[0m
+[0;32mI (405) app_init: ESP-IDF:          v5.3.4-603-g563f462986[0m
+[0;32mI (411) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (415) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (420) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (433) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (438) heap_init: At 3FFB8198 len 00027E68 (159 KiB): DRAM[0m
+[0;32mI (445) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (451) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (458) heap_init: At 40097978 len 00008688 (33 KiB): IRAM[0m
+[0;32mI (465) spi_flash: detected chip: generic[0m
+[0;32mI (468) spi_flash: flash io: dio[0m
+[0;33mW (472) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (486) main_task: Started on CPU0[0m
+[0;32mI (496) main_task: Calling app_main()[0m
+[0;32mI (496) app_main: Starting app_main...[0m
+[0;32mI (516) wifi_station: ESP_WIFI_MODE_STA[0m
+[0;32mI (526) wifi:wifi driver task: 3ffc027c, prio:23, stack:6656, core=0[0m
+[0;32mI (536) wifi:wifi firmware version: 6f4945b[0m
+[0;32mI (536) wifi:wifi certification version: v7.0[0m
+[0;32mI (536) wifi:config NVS flash: enabled[0m
+[0;32mI (536) wifi:config nano formating: disabled[0m
+[0;32mI (536) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (546) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (546) wifi:Init management short buffer num: 32[0m
+[0;32mI (556) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (556) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (556) wifi:Init static rx buffer num: 10[0m
+[0;32mI (566) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (566) wifi_init: rx ba win: 6[0m
+[0;32mI (576) wifi_init: accept mbox: 6[0m
+[0;32mI (576) wifi_init: tcpip mbox: 32[0m
+[0;32mI (576) wifi_init: udp mbox: 6[0m
+[0;32mI (586) wifi_init: tcp mbox: 6[0m
+[0;32mI (586) wifi_init: tcp tx win: 5760[0m
+[0;32mI (596) wifi_init: tcp rx win: 5760[0m
+[0;32mI (596) wifi_init: tcp mss: 1440[0m
+[0;32mI (596) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (606) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (606) wifi_station: Connecting to SSID:iPhone do Matheus password:78654441[0m
+[0;32mI (616) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (696) wifi:mode : sta (10:52:1c:69:1e:b0)[0m
+[0;32mI (696) wifi:enable tsf[0m
+[0;32mI (706) wifi_station: wifi_init_sta finished.[0m
+[0;32mI (716) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (716) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (716) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (726) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (786) wifi:connected with iPhone do Matheus, aid = 1, channel 6, BW20, bssid = 82:2d:b7:c6:d8:b6[0m
+[0;32mI (786) wifi:security: WPA2-PSK, phy: bgn, rssi: -56[0m
+[0;32mI (786) wifi:pm start, type: 1[0m
+
+[0;32mI (796) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (806) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (2306) esp_netif_handlers: sta ip: 172.20.10.3, mask: 255.255.255.240, gw: 172.20.10.1[0m
+[0;32mI (2306) wifi_station: got ip:172.20.10.3[0m
+[0;32mI (2306) wifi_station: connected to ap SSID:iPhone do Matheus password:78654441[0m
+[0;32mI (2316) motors_driver: motors_driver_init(): motores inicializados (stub).[0m
+[0;32mI (2326) sensors: sensors_init(): sensores inicializados (stub).[0m
+[0;32mI (2326) safety_supervisor: Inicializando safety_supervisor...[0m
+[0;32mI (2336) control_task: Inicializando control_task...[0m
+[0;32mI (2336) safety_supervisor: safety_supervisor task iniciada (Gatekeeper).[0m
+[0;32mI (2346) app_main: Inicialização concluída. Tasks em execução.[0m
+[0;32mI (2346) control_task: control_task iniciada (stub).[0m
+[0;32mI (2366) control_task: Gerando comando de velocidade (bug/intent): 10[0m
+[0;32mI (2366) safety_supervisor: Comando recebido: 10% -> Comando seguro: 10%[0m
+[0;32mI (2376) motors_driver: motors_driver_set_speed(): speed=10% (stub, apenas log)[0m
+[0;32mI (3386) control_task: Gerando comando de velocidade (bug/intent): 20[0m
+[0;32mI (3386) safety_supervisor: Comando recebido: 20% -> Comando seguro: 20%[0m
+[0;32mI (3386) motors_driver: motors_driver_set_speed(): speed=20% (stub, apenas log)[0m
+[0;32mI (4396) control_task: Gerando comando de velocidade (bug/intent): 30[0m
+[0;32mI (4396) safety_supervisor: Comando recebido: 30% -> Comando seguro: 30%[0m
+[0;32mI (4396) motors_driver: motors_driver_set_speed(): speed=30% (stub, apenas log)[0m
+[0;32mI (5406) control_task: Gerando comando de velocidade (bug/intent): 40[0m
+[0;32mI (5406) safety_supervisor: Comando recebido: 40% -> Comando seguro: 40%[0m
+[0;32mI (5406) motors_driver: motors_driver_set_speed(): speed=40% (stub, apenas log)[0m
+[0;32mI (6416) control_task: Gerando comando de velocidade (bug/intent): 50[0m
+[0;32mI (6416) safety_supervisor: Comando recebido: 50% -> Comando seguro: 50%[0m
+[0;32mI (6416) motors_driver: motors_driver_set_speed(): speed=50% (stub, apenas log)[0m
+[0;32mI (7426) control_task: Gerando comando de velocidade (bug/intent): 60[0m
+[0;32mI (7426) safety_supervisor: Comando recebido: 60% -> Comando seguro: 60%[0m
+[0;32mI (7426) motors_driver: motors_driver_set_speed(): speed=60% (stub, apenas log)[0m
+[0;32mI (8436) control_task: Gerando comando de velocidade (bug/intent): 70[0m
+[0;32mI (8436) safety_supervisor: Comando recebido: 70% -> Comando seguro: 70%[0m
+[0;32mI (8436) motors_driver: motors_driver_set_speed(): speed=70% (stub, apenas log)[0m
+[0;32mI (9446) control_task: Gerando comando de velocidade (bug/intent): 80[0m
+[0;32mI (9446) safety_supervisor: Comando recebido: 80% -> Comando seguro: 80%[0m
+[0;32mI (9446) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (10456) control_task: Gerando comando de velocidade (bug/intent): 90[0m
+[0;33mW (10456) safety_supervisor: Speed 90% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (10456) safety_supervisor: Comando recebido: 90% -> Comando seguro: 80%[0m
+[0;32mI (10466) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (11476) control_task: Gerando comando de velocidade (bug/intent): 100[0m
+[0;33mW (11476) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (11476) safety_supervisor: Comando recebido: 100% -> Comando seguro: 80%[0m
+[0;32mI (11486) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (12496) control_task: Gerando comando de velocidade (bug/intent): 110[0m
+[0;33mW (12496) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (12496) safety_supervisor: Comando recebido: 110% -> Comando seguro: 80%[0m
+[0;32mI (12506) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (13516) control_task: Gerando comando de velocidade (bug/intent): 0[0m
+[0;32mI (13516) safety_supervisor: Comando recebido: 0% -> Comando seguro: 0%[0m
+[0;32mI (13516) motors_driver: motors_driver_set_speed(): speed=0% (stub, apenas log)[0m
+[0;32mI (14526) control_task: Gerando comando de velocidade (bug/intent): 10[0m
+[0;32mI (14526) safety_supervisor: Comando recebido: 10% -> Comando seguro: 10%[0m
+[0;32mI (14526) motors_driver: motors_driver_set_speed(): speed=10% (stub, apenas log)[0m
+[0;32mI (15536) control_task: Gerando comando de velocidade (bug/intent): 20[0m
+[0;32mI (15536) safety_supervisor: Comando recebido: 20% -> Comando seguro: 20%[0m
+[0;32mI (15536) motors_driver: motors_driver_set_speed(): speed=20% (stub, apenas log)[0m
+[0;32mI (16546) control_task: Gerando comando de velocidade (bug/intent): 30[0m
+[0;32mI (16546) safety_supervisor: Comando recebido: 30% -> Comando seguro: 30%[0m
+[0;32mI (16546) motors_driver: motors_driver_set_speed(): speed=30% (stub, apenas log)[0m
+[0;32mI (17556) control_task: Gerando comando de velocidade (bug/intent): 40[0m
+[0;32mI (17556) safety_supervisor: Comando recebido: 40% -> Comando seguro: 40%[0m
+[0;32mI (17556) motors_driver: motors_driver_set_speed(): speed=40% (stub, apenas log)[0m
+[0;32mI (18566) control_task: Gerando comando de velocidade (bug/intent): 50[0m
+[0;32mI (18566) safety_supervisor: Comando recebido: 50% -> Comando seguro: 50%[0m
+[0;32mI (18566) motors_driver: motors_driver_set_speed(): speed=50% (stub, apenas log)[0m
+[0;32mI (19576) control_task: Gerando comando de velocidade (bug/intent): 60[0m
+[0;32mI (19576) safety_supervisor: Comando recebido: 60% -> Comando seguro: 60%[0m
+[0;32mI (19576) motors_driver: motors_driver_set_speed(): speed=60% (stub, apenas log)[0m
+[0;32mI (20586) control_task: Gerando comando de velocidade (bug/intent): 70[0m
+[0;32mI (20586) safety_supervisor: Comando recebido: 70% -> Comando seguro: 70%[0m
+[0;32mI (20586) motors_driver: motors_driver_set_speed(): speed=70% (stub, apenas log)[0m
+[0;32mI (21596) control_task: Gerando comando de velocidade (bug/intent): 80[0m
+[0;32mI (21596) safety_supervisor: Comando recebido: 80% -> Comando seguro: 80%[0m
+[0;32mI (21596) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (22606) control_task: Gerando comando de velocidade (bug/intent): 90[0m
+[0;33mW (22606) safety_supervisor: Speed 90% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (22606) safety_supervisor: Comando recebido: 90% -> Comando seguro: 80%[0m
+[0;32mI (22616) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (23626) control_task: Gerando comando de velocidade (bug/intent): 100[0m
+[0;33mW (23626) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (23626) safety_supervisor: Comando recebido: 100% -> Comando seguro: 80%[0m
+[0;32mI (23636) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (24646) control_task: Gerando comando de velocidade (bug/intent): 110[0m
+[0;33mW (24646) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (24646) safety_supervisor: Comando recebido: 110% -> Comando seguro: 80%[0m
+[0;32mI (24656) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (25666) control_task: Gerando comando de velocidade (bug/intent): 0[0m
+[0;32mI (25666) safety_supervisor: Comando recebido: 0% -> Comando seguro: 0%[0m
+[0;32mI (25666) motors_driver: motors_driver_set_speed(): speed=0% (stub, apenas log)[0m
+[0;32mI (26676) control_task: Gerando comando de velocidade (bug/intent): 10[0m
+[0;32mI (26676) safety_supervisor: Comando recebido: 10% -> Comando seguro: 10%[0m
+[0;32mI (26676) motors_driver: motors_driver_set_speed(): speed=10% (stub, apenas log)[0m
+[0;32mI (27686) control_task: Gerando comando de velocidade (bug/intent): 20[0m
+[0;32mI (27686) safety_supervisor: Comando recebido: 20% -> Comando seguro: 20%[0m
+[0;32mI (27686) motors_driver: motors_driver_set_speed(): speed=20% (stub, apenas log)[0m
+[0;32mI (28696) control_task: Gerando comando de velocidade (bug/intent): 30[0m
+[0;32mI (28696) safety_supervisor: Comando recebido: 30% -> Comando seguro: 30%[0m
+[0;32mI (28696) motors_driver: motors_driver_set_speed(): speed=30% (stub, apenas log)[0m
+[0;32mI (29706) control_task: Gerando comando de velocidade (bug/intent): 40[0m
+[0;32mI (29706) safety_supervisor: Comando recebido: 40% -> Comando seguro: 40%[0m
+[0;32mI (29706) motors_driver: motors_driver_set_speed(): speed=40% (stub, apenas log)[0m
+[0;32mI (30716) control_task: Gerando comando de velocidade (bug/intent): 50[0m
+[0;32mI (30716) safety_supervisor: Comando recebido: 50% -> Comando seguro: 50%[0m
+[0;32mI (30716) motors_driver: motors_driver_set_speed(): speed=50% (stub, apenas log)[0m
+[0;32mI (31726) control_task: Gerando comando de velocidade (bug/intent): 60[0m
+[0;32mI (31726) safety_supervisor: Comando recebido: 60% -> Comando seguro: 60%[0m
+[0;32mI (31726) motors_driver: motors_driver_set_speed(): speed=60% (stub, apenas log)[0m
+[0;32mI (32736) control_task: Gerando comando de velocidade (bug/intent): 70[0m
+[0;32mI (32736) safety_supervisor: Comando recebido: 70% -> Comando seguro: 70%[0m
+[0;32mI (32736) motors_driver: motors_driver_set_speed(): speed=70% (stub, apenas log)[0m
+[0;32mI (33746) control_task: Gerando comando de velocidade (bug/intent): 80[0m
+[0;32mI (33746) safety_supervisor: Comando recebido: 80% -> Comando seguro: 80%[0m
+[0;32mI (33746) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (34756) control_task: Gerando comando de velocidade (bug/intent): 90[0m
+[0;33mW (34756) safety_supervisor: Speed 90% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (34756) safety_supervisor: Comando recebido: 90% -> Comando seguro: 80%[0m
+[0;32mI (34766) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (35776) control_task: Gerando comando de velocidade (bug/intent): 100[0m
+[0;33mW (35776) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (35776) safety_supervisor: Comando recebido: 100% -> Comando seguro: 80%[0m
+[0;32mI (35786) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (36796) control_task: Gerando comando de velocidade (bug/intent): 110[0m
+[0;33mW (36796) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (36796) safety_supervisor: Comando recebido: 110% -> Comando seguro: 80%[0m
+[0;32mI (36806) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (37816) control_task: Gerando comando de velocidade (bug/intent): 0[0m
+[0;32mI (37816) safety_supervisor: Comando recebido: 0% -> Comando seguro: 0%[0m
+[0;32mI (37816) motors_driver: motors_driver_set_speed(): speed=0% (stub, apenas log)[0m
+[0;32mI (38826) control_task: Gerando comando de velocidade (bug/intent): 10[0m
+[0;32mI (38826) safety_supervisor: Comando recebido: 10% -> Comando seguro: 10%[0m
+[0;32mI (38826) motors_driver: motors_driver_set_speed(): speed=10% (stub, apenas log)[0m
+[0;32mI (39836) control_task: Gerando comando de velocidade (bug/intent): 20[0m
+[0;32mI (39836) safety_supervisor: Comando recebido: 20% -> Comando seguro: 20%[0m
+[0;32mI (39836) motors_driver: motors_driver_set_speed(): speed=20% (stub, apenas log)[0m
+[0;32mI (40846) control_task: Gerando comando de velocidade (bug/intent): 30[0m
+[0;32mI (40846) safety_supervisor: Comando recebido: 30% -> Comando seguro: 30%[0m
+[0;32mI (40846) motors_driver: motors_driver_set_speed(): speed=30% (stub, apenas log)[0m
+[0;32mI (41856) control_task: Gerando comando de velocidade (bug/intent): 40[0m
+[0;32mI (41856) safety_supervisor: Comando recebido: 40% -> Comando seguro: 40%[0m
+[0;32mI (41856) motors_driver: motors_driver_set_speed(): speed=40% (stub, apenas log)[0m
+[0;32mI (42866) control_task: Gerando comando de velocidade (bug/intent): 50[0m
+[0;32mI (42866) safety_supervisor: Comando recebido: 50% -> Comando seguro: 50%[0m
+[0;32mI (42866) motors_driver: motors_driver_set_speed(): speed=50% (stub, apenas log)[0m
+[0;32mI (43876) control_task: Gerando comando de velocidade (bug/intent): 60[0m
+[0;32mI (43876) safety_supervisor: Comando recebido: 60% -> Comando seguro: 60%[0m
+[0;32mI (43876) motors_driver: motors_driver_set_speed(): speed=60% (stub, apenas log)[0m
+[0;32mI (44886) control_task: Gerando comando de velocidade (bug/intent): 70[0m
+[0;32mI (44886) safety_supervisor: Comando recebido: 70% -> Comando seguro: 70%[0m
+[0;32mI (44886) motors_driver: motors_driver_set_speed(): speed=70% (stub, apenas log)[0m
+[0;32mI (45896) control_task: Gerando comando de velocidade (bug/intent): 80[0m
+[0;32mI (45896) safety_supervisor: Comando recebido: 80% -> Comando seguro: 80%[0m
+[0;32mI (45896) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (46906) control_task: Gerando comando de velocidade (bug/intent): 90[0m
+[0;33mW (46906) safety_supervisor: Speed 90% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (46906) safety_supervisor: Comando recebido: 90% -> Comando seguro: 80%[0m
+[0;32mI (46916) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (47926) control_task: Gerando comando de velocidade (bug/intent): 100[0m
+[0;33mW (47926) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (47926) safety_supervisor: Comando recebido: 100% -> Comando seguro: 80%[0m
+[0;32mI (47936) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (48946) control_task: Gerando comando de velocidade (bug/intent): 110[0m
+[0;33mW (48946) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (48946) safety_supervisor: Comando recebido: 110% -> Comando seguro: 80%[0m
+[0;32mI (48956) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (49966) control_task: Gerando comando de velocidade (bug/intent): 0[0m
+[0;32mI (49966) safety_supervisor: Comando recebido: 0% -> Comando seguro: 0%[0m
+[0;32mI (49966) motors_driver: motors_driver_set_speed(): speed=0% (stub, apenas log)[0m
+[0;32mI (50976) control_task: Gerando comando de velocidade (bug/intent): 10[0m
+[0;32mI (50976) safety_supervisor: Comando recebido: 10% -> Comando seguro: 10%[0m
+[0;32mI (50976) motors_driver: motors_driver_set_speed(): speed=10% (stub, apenas log)[0m
+[0;32mI (51986) control_task: Gerando comando de velocidade (bug/intent): 20[0m
+[0;32mI (51986) safety_supervisor: Comando recebido: 20% -> Comando seguro: 20%[0m
+[0;32mI (51986) motors_driver: motors_driver_set_speed(): speed=20% (stub, apenas log)[0m
+[0;32mI (52996) control_task: Gerando comando de velocidade (bug/intent): 30[0m
+[0;32mI (52996) safety_supervisor: Comando recebido: 30% -> Comando seguro: 30%[0m
+[0;32mI (52996) motors_driver: motors_driver_set_speed(): speed=30% (stub, apenas log)[0m
+[0;32mI (54006) control_task: Gerando comando de velocidade (bug/intent): 40[0m
+[0;32mI (54006) safety_supervisor: Comando recebido: 40% -> Comando seguro: 40%[0m
+[0;32mI (54006) motors_driver: motors_driver_set_speed(): speed=40% (stub, apenas log)[0m
+[0;32mI (55016) control_task: Gerando comando de velocidade (bug/intent): 50[0m
+[0;32mI (55016) safety_supervisor: Comando recebido: 50% -> Comando seguro: 50%[0m
+[0;32mI (55016) motors_driver: motors_driver_set_speed(): speed=50% (stub, apenas log)[0m
+[0;32mI (56026) control_task: Gerando comando de velocidade (bug/intent): 60[0m
+[0;32mI (56026) safety_supervisor: Comando recebido: 60% -> Comando seguro: 60%[0m
+[0;32mI (56026) motors_driver: motors_driver_set_speed(): speed=60% (stub, apenas log)[0m
+[0;32mI (57036) control_task: Gerando comando de velocidade (bug/intent): 70[0m
+[0;32mI (57036) safety_supervisor: Comando recebido: 70% -> Comando seguro: 70%[0m
+[0;32mI (57036) motors_driver: motors_driver_set_speed(): speed=70% (stub, apenas log)[0m
+[0;32mI (58046) control_task: Gerando comando de velocidade (bug/intent): 80[0m
+[0;32mI (58046) safety_supervisor: Comando recebido: 80% -> Comando seguro: 80%[0m
+[0;32mI (58046) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (59056) control_task: Gerando comando de velocidade (bug/intent): 90[0m
+[0;33mW (59056) safety_supervisor: Speed 90% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (59056) safety_supervisor: Comando recebido: 90% -> Comando seguro: 80%[0m
+[0;32mI (59066) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (60076) control_task: Gerando comando de velocidade (bug/intent): 100[0m
+[0;33mW (60076) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (60076) safety_supervisor: Comando recebido: 100% -> Comando seguro: 80%[0m
+[0;32mI (60086) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (61096) control_task: Gerando comando de velocidade (bug/intent): 110[0m
+[0;33mW (61096) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (61096) safety_supervisor: Comando recebido: 110% -> Comando seguro: 80%[0m
+[0;32mI (61106) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (62116) control_task: Gerando comando de velocidade (bug/intent): 0[0m
+[0;32mI (62116) safety_supervisor: Comando recebido: 0% -> Comando seguro: 0%[0m
+[0;32mI (62116) motors_driver: motors_driver_set_speed(): speed=0% (stub, apenas log)[0m
+[0;32mI (63126) control_task: Gerando comando de velocidade (bug/intent): 10[0m
+[0;32mI (63126) safety_supervisor: Comando recebido: 10% -> Comando seguro: 10%[0m
+[0;32mI (63126) motors_driver: motors_driver_set_speed(): speed=10% (stub, apenas log)[0m
+[0;32mI (64136) control_task: Gerando comando de velocidade (bug/intent): 20[0m
+[0;32mI (64136) safety_supervisor: Comando recebido: 20% -> Comando seguro: 20%[0m
+[0;32mI (64136) motors_driver: motors_driver_set_speed(): speed=20% (stub, apenas log)[0m
+[0;32mI (65146) control_task: Gerando comando de velocidade (bug/intent): 30[0m
+[0;32mI (65146) safety_supervisor: Comando recebido: 30% -> Comando seguro: 30%[0m
+[0;32mI (65146) motors_driver: motors_driver_set_speed(): speed=30% (stub, apenas log)[0m
+[0;32mI (66156) control_task: Gerando comando de velocidade (bug/intent): 40[0m
+[0;32mI (66156) safety_supervisor: Comando recebido: 40% -> Comando seguro: 40%[0m
+[0;32mI (66156) motors_driver: motors_driver_set_speed(): speed=40% (stub, apenas log)[0m
+[0;32mI (67166) control_task: Gerando comando de velocidade (bug/intent): 50[0m
+[0;32mI (67166) safety_supervisor: Comando recebido: 50% -> Comando seguro: 50%[0m
+[0;32mI (67166) motors_driver: motors_driver_set_speed(): speed=50% (stub, apenas log)[0m
+[0;32mI (68176) control_task: Gerando comando de velocidade (bug/intent): 60[0m
+[0;32mI (68176) safety_supervisor: Comando recebido: 60% -> Comando seguro: 60%[0m
+[0;32mI (68176) motors_driver: motors_driver_set_speed(): speed=60% (stub, apenas log)[0m
+[0;32mI (69186) control_task: Gerando comando de velocidade (bug/intent): 70[0m
+[0;32mI (69186) safety_supervisor: Comando recebido: 70% -> Comando seguro: 70%[0m
+[0;32mI (69186) motors_driver: motors_driver_set_speed(): speed=70% (stub, apenas log)[0m
+[0;32mI (70196) control_task: Gerando comando de velocidade (bug/intent): 80[0m
+[0;32mI (70196) safety_supervisor: Comando recebido: 80% -> Comando seguro: 80%[0m
+[0;32mI (70196) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (71206) control_task: Gerando comando de velocidade (bug/intent): 90[0m
+[0;33mW (71206) safety_supervisor: Speed 90% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (71206) safety_supervisor: Comando recebido: 90% -> Comando seguro: 80%[0m
+[0;32mI (71216) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (72226) control_task: Gerando comando de velocidade (bug/intent): 100[0m
+[0;33mW (72226) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (72226) safety_supervisor: Comando recebido: 100% -> Comando seguro: 80%[0m
+[0;32mI (72236) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (73246) control_task: Gerando comando de velocidade (bug/intent): 110[0m
+[0;33mW (73246) safety_supervisor: Speed 100% acima do limite! Reduzindo para 80%.[0m
+[0;32mI (73246) safety_supervisor: Comando recebido: 110% -> Comando seguro: 80%[0m
+[0;32mI (73256) motors_driver: motors_driver_set_speed(): speed=80% (stub, apenas log)[0m
+[0;32mI (74266) control_task: Gerando comando de velocidade (bug/intent): 0[0m
+[0;32mI (74266) safety_supervisor: Comando recebido: 0% -> Comando seguro: 0%[0m
+[0;32mI (74266) motors_driver: motors_driver_set_speed(): speed=0% (stub, apenas log)[0m
+[0;32mI (75276) control_task: Gerando comando de velocidade (bug/intent): 10[0m
+[0;32mI (75276) safety_supervisor: Comando recebido: 10% -> Comando seguro: 10%[0m
+[0;32mI (75276) motors_driver: motors_driver_set_speed(): speed=10% (stub, apenas log)[0m
+ets Jun  8 2016 00:22:57
+
+rst:0x1 (POWERON_RESET),boot:0x13 (SPI_FAST_FLASH_BOOT)
+configsip: 0, SPIWP:0xee
+clk_drv:0x00,q_drv:0x00,d_drv:0x00,cs0_drv:0x00,hd_drv:0x00,wp_drv:0x00
+mode:DIO, clock div:2
+load:0x3fff0030,len:7176
+load:0x40078000,len:15660
+ho 0 tail 12 room 4
+load:0x40080400,len:4
+load:0x40080404,len:3904
+entry 0x40080640
+[0;32mI (31) boot: ESP-IDF v5.3.4-603-g563f462986 2nd stage bootloader[0m
+[0;32mI (31) boot: compile time Dec  9 2025 21:47:13[0m
+[0;32mI (32) boot: Multicore bootloader[0m
+[0;32mI (36) boot: chip revision: v1.0[0m
+[0;32mI (40) boot.esp32: SPI Speed      : 40MHz[0m
+[0;32mI (45) boot.esp32: SPI Mode       : DIO[0m
+[0;32mI (49) boot.esp32: SPI Flash Size : 2MB[0m
+[0;32mI (54) boot: Enabling RNG early entropy source...[0m
+[0;32mI (59) boot: Partition Table:[0m
+[0;32mI (63) boot: ## Label            Usage          Type ST Offset   Length[0m
+[0;32mI (70) boot:  0 nvs              WiFi data        01 02 00009000 00006000[0m
+[0;32mI (77) boot:  1 phy_init         RF data          01 01 0000f000 00001000[0m
+[0;32mI (85) boot:  2 factory          factory app      00 00 00010000 00100000[0m
+[0;32mI (92) boot: End of partition table[0m
+[0;32mI (96) esp_image: segment 0: paddr=00010020 vaddr=3f400020 size=181e0h ( 98784) map[0m
+[0;32mI (139) esp_image: segment 1: paddr=00028208 vaddr=3ffb0000 size=03f3ch ( 16188) load[0m
+[0;32mI (145) esp_image: segment 2: paddr=0002c14c vaddr=40080000 size=03ecch ( 16076) load[0m
+[0;32mI (152) esp_image: segment 3: paddr=00030020 vaddr=400d0020 size=7479ch (477084) map[0m
+[0;32mI (317) esp_image: segment 4: paddr=000a47c4 vaddr=40083ecc size=13aach ( 80556) load[0m
+[0;32mI (360) boot: Loaded app from partition at offset 0x10000[0m
+[0;32mI (360) boot: Disabling RNG early entropy source...[0m
+[0;32mI (373) cpu_start: Multicore app[0m
+[0;32mI (381) cpu_start: Pro cpu start user code[0m
+[0;32mI (381) cpu_start: cpu freq: 160000000 Hz[0m
+[0;32mI (381) app_init: Application information:[0m
+[0;32mI (384) app_init: Project name:     M.T.E.X[0m
+[0;32mI (389) app_init: App version:      1[0m
+[0;32mI (393) app_init: Compile time:     Dec  9 2025 21:47:04[0m
+[0;32mI (399) app_init: ELF file SHA256:  71008f7ed...[0m
+[0;32mI (405) app_init: ESP-IDF:          v5.3.4-603-g563f462986[0m
+[0;32mI (411) efuse_init: Min chip rev:     v0.0[0m
+[0;32mI (415) efuse_init: Max chip rev:     v3.99 [0m
+[0;32mI (420) efuse_init: Chip rev:         v1.0[0m
+[0;32mI (425) heap_init: Initializing. RAM available for dynamic allocation:[0m
+[0;32mI (433) heap_init: At 3FFAE6E0 len 00001920 (6 KiB): DRAM[0m
+[0;32mI (439) heap_init: At 3FFB8198 len 00027E68 (159 KiB): DRAM[0m
+[0;32mI (445) heap_init: At 3FFE0440 len 00003AE0 (14 KiB): D/IRAM[0m
+[0;32mI (451) heap_init: At 3FFE4350 len 0001BCB0 (111 KiB): D/IRAM[0m
+[0;32mI (458) heap_init: At 40097978 len 00008688 (33 KiB): IRAM[0m
+[0;32mI (465) spi_flash: detected chip: generic[0m
+[0;32mI (468) spi_flash: flash io: dio[0m
+[0;33mW (472) spi_flash: Detected size(4096k) larger than the size in the binary image header(2048k). Using the size in the binary image header.[0m
+[0;32mI (486) main_task: Started on CPU0[0m
+[0;32mI (496) main_task: Calling app_main()[0m
+[0;32mI (496) app_main: Starting app_main...[0m
+[0;32mI (516) wifi_station: ESP_WIFI_MODE_STA[0m
+[0;32mI (526) wifi:wifi driver task: 3ffc027c, prio:23, stack:6656, core=0[0m
+[0;32mI (536) wifi:wifi firmware version: 6f4945b[0m
+[0;32mI (536) wifi:wifi certification version: v7.0[0m
+[0;32mI (536) wifi:config NVS flash: enabled[0m
+[0;32mI (536) wifi:config nano formating: disabled[0m
+[0;32mI (536) wifi:Init data frame dynamic rx buffer num: 32[0m
+[0;32mI (546) wifi:Init static rx mgmt buffer num: 5[0m
+[0;32mI (546) wifi:Init management short buffer num: 32[0m
+[0;32mI (556) wifi:Init dynamic tx buffer num: 32[0m
+[0;32mI (556) wifi:Init static rx buffer size: 1600[0m
+[0;32mI (556) wifi:Init static rx buffer num: 10[0m
+[0;32mI (566) wifi:Init dynamic rx buffer num: 32[0m
+[0;32mI (566) wifi_init: rx ba win: 6[0m
+[0;32mI (576) wifi_init: accept mbox: 6[0m
+[0;32mI (576) wifi_init: tcpip mbox: 32[0m
+[0;32mI (576) wifi_init: udp mbox: 6[0m
+[0;32mI (586) wifi_init: tcp mbox: 6[0m
+[0;32mI (586) wifi_init: tcp tx win: 5760[0m
+[0;32mI (596) wifi_init: tcp rx win: 5760[0m
+[0;32mI (596) wifi_init: tcp mss: 1440[0m
+[0;32mI (596) wifi_init: WiFi IRAM OP enabled[0m
+[0;32mI (606) wifi_init: WiFi RX IRAM OP enabled[0m
+[0;32mI (606) wifi_station: Connecting to SSID:iPhone do Matheus password:78654441[0m
+[0;32mI (616) phy_init: phy_version 4863,a3a4459,Oct 28 2025,14:30:06[0m
+[0;32mI (696) wifi:mode : sta (10:52:1c:69:1e:b0)[0m
+[0;32mI (696) wifi:enable tsf[0m
+[0;32mI (706) wifi_station: wifi_init_sta finished.[0m
+[0;32mI (716) wifi:new:<6,0>, old:<1,0>, ap:<255,255>, sta:<6,0>, prof:1, snd_ch_cfg:0x0[0m
+[0;32mI (716) wifi:state: init -> auth (0xb0)[0m
+[0;32mI (716) wifi:state: auth -> assoc (0x0)[0m
+[0;32mI (726) wifi:state: assoc -> run (0x10)[0m
+[0;32mI (766) wifi:connected with iPhone do Matheus, aid = 1, channel 6, BW20, bssid = 82:2d:b7:c6:d8:b6[0m
+[0;32mI (766) wifi:security: WPA2-PSK, phy: bgn, rssi: -44[0m
+[0;32mI (766) wifi:pm start, type: 1[0m
+
+[0;32mI (766) wifi:dp: 1, bi: 102400, li: 3, scale listen interval from 307200 us to 307200 us[0m
+[0;32mI (836) wifi:AP's beacon interval = 102400 us, DTIM period = 1[0m
+[0;32mI (1776) esp_netif_handlers: sta ip: 172.20.10.3, mask: 255.255.255.240, gw: 172.20.10.1[0m

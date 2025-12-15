@@ -1,0 +1,27 @@
+components/drivers_sensors/sensors.c:9:    ESP_LOGI(TAG_SENS, "sensors_init(): sensores inicializados (stub).");
+components/safety/safety_supervisor.c:38:        ESP_LOGW(TAG_SAFE,
+components/safety/safety_supervisor.c:50:    ESP_LOGI(TAG_SAFE, "safety_supervisor task iniciada (Gatekeeper).");
+components/safety/safety_supervisor.c:62:            ESP_LOGI(TAG_SAFE,
+components/safety/safety_supervisor.c:81:    ESP_LOGI(TAG_SAFE, "Inicializando safety_supervisor...");
+components/safety/safety_supervisor.c:86:        ESP_LOGE(TAG_SAFE, "Falha ao criar fila de comandos de controle!");
+components/safety/safety_supervisor.c:100:        ESP_LOGE(TAG_SAFE, "Falha ao criar safety_task");
+components/safety/safety_supervisor.c:108:        ESP_LOGE(TAG_SAFE,
+components/safety/safety_supervisor.c:121:        ESP_LOGW(TAG_SAFE,
+components/drivers_motors/motors_driver.c:9:    ESP_LOGI(TAG_MOTORS, "motors_driver_init(): motores inicializados (stub).");
+components/drivers_motors/motors_driver.c:19:    ESP_LOGI(TAG_MOTORS,
+components/control/control_task.c:11:    ESP_LOGI(TAG_CTRL, "control_task iniciada (stub).");
+components/control/control_task.c:19:        ESP_LOGI(TAG_CTRL,
+components/control/control_task.c:26:            ESP_LOGW(TAG_CTRL,
+components/control/control_task.c:37:    ESP_LOGI(TAG_CTRL, "Inicializando control_task...");
+components/control/control_task.c:48:        ESP_LOGE(TAG_CTRL, "Falha ao criar control_task");
+components/comm_wifi/wifi_comm.c:84:            ESP_LOGI(TAG, "retry to connect to the AP");
+components/comm_wifi/wifi_comm.c:88:        ESP_LOGI(TAG,"connect to the AP fail");
+components/comm_wifi/wifi_comm.c:93:        ESP_LOGI(TAG, "got ip:" IPSTR, IP2STR(&event->ip_info.ip));
+components/comm_wifi/wifi_comm.c:143:    ESP_LOGI(TAG, "Connecting to SSID:%s password:%s",
+components/comm_wifi/wifi_comm.c:150:    ESP_LOGI(TAG, "wifi_init_sta finished.");
+components/comm_wifi/wifi_comm.c:161:        ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
+components/comm_wifi/wifi_comm.c:164:        ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
+components/comm_wifi/wifi_comm.c:167:        ESP_LOGE(TAG, "UNEXPECTED EVENT");
+components/comm_wifi/wifi_comm.c:197:    ESP_LOGI(TAG, "ESP_WIFI_MODE_STA");
+main/app_main.c:15:    ESP_LOGI(TAG_MAIN, "Starting app_main...");
+main/app_main.c:33:    ESP_LOGI(TAG_MAIN, "Inicialização concluída. Tasks em execução.");

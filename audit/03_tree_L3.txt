@@ -1,0 +1,244 @@
+.
+├── CMakeLists.txt
+├── README.md
+├── audit
+│   ├── 01_idf_version.txt
+│   ├── 01_os_release.txt
+│   ├── 01_python_env.txt
+│   ├── 01_uname.txt
+│   ├── 01_xtensa_gcc_version.txt
+│   ├── 02_espidf_git_describe.txt
+│   ├── 02_espidf_git_head.txt
+│   ├── 02_espidf_git_remote.txt
+│   ├── 02_espidf_git_status.txt
+│   └── 03_tree_L3.txt
+├── build
+│   ├── CMakeCache.txt
+│   ├── CMakeFiles
+│   │   ├── 3.22.1
+│   │   ├── CMakeOutput.log
+│   │   ├── CMakeTmp
+│   │   ├── M.T.E.X.elf.dir
+│   │   ├── TargetDirectories.txt
+│   │   ├── bootloader-complete
+│   │   ├── bootloader.dir
+│   │   ├── clean_additional.cmake
+│   │   ├── cmake.check_cache
+│   │   ├── git-data
+│   │   └── rules.ninja
+│   ├── M.T.E.X.bin
+│   ├── M.T.E.X.elf
+│   ├── M.T.E.X.map
+│   ├── app-flash_args
+│   ├── bootloader
+│   │   ├── CMakeCache.txt
+│   │   ├── CMakeFiles
+│   │   ├── bootloader.bin
+│   │   ├── bootloader.elf
+│   │   ├── bootloader.map
+│   │   ├── build.ninja
+│   │   ├── cmake_install.cmake
+│   │   ├── compile_commands.json
+│   │   ├── config
+│   │   ├── config.env
+│   │   ├── esp-idf
+│   │   ├── gdbinit
+│   │   ├── kconfigs.in
+│   │   ├── kconfigs_projbuild.in
+│   │   ├── project_description.json
+│   │   └── project_elf_src_esp32.c
+│   ├── bootloader-flash_args
+│   ├── bootloader-prefix
+│   │   ├── src
+│   │   └── tmp
+│   ├── build.ninja
+│   ├── cmake_install.cmake
+│   ├── compile_commands.json
+│   ├── config
+│   │   ├── kconfig_menus.json
+│   │   ├── sdkconfig.cmake
+│   │   ├── sdkconfig.h
+│   │   └── sdkconfig.json
+│   ├── config.env
+│   ├── esp-idf
+│   │   ├── CMakeFiles
+│   │   ├── app_trace
+│   │   ├── app_update
+│   │   ├── bootloader
+│   │   ├── bootloader_support
+│   │   ├── bt
+│   │   ├── cmake_install.cmake
+│   │   ├── cmock
+│   │   ├── comm_wifi
+│   │   ├── console
+│   │   ├── control
+│   │   ├── cxx
+│   │   ├── driver
+│   │   ├── drivers_motors
+│   │   ├── drivers_sensors
+│   │   ├── efuse
+│   │   ├── esp-tls
+│   │   ├── esp_adc
+│   │   ├── esp_app_format
+│   │   ├── esp_bootloader_format
+│   │   ├── esp_coex
+│   │   ├── esp_common
+│   │   ├── esp_driver_ana_cmpr
+│   │   ├── esp_driver_cam
+│   │   ├── esp_driver_dac
+│   │   ├── esp_driver_gpio
+│   │   ├── esp_driver_gptimer
+│   │   ├── esp_driver_i2c
+│   │   ├── esp_driver_i2s
+│   │   ├── esp_driver_isp
+│   │   ├── esp_driver_jpeg
+│   │   ├── esp_driver_ledc
+│   │   ├── esp_driver_mcpwm
+│   │   ├── esp_driver_parlio
+│   │   ├── esp_driver_pcnt
+│   │   ├── esp_driver_ppa
+│   │   ├── esp_driver_rmt
+│   │   ├── esp_driver_sdio
+│   │   ├── esp_driver_sdm
+│   │   ├── esp_driver_sdmmc
+│   │   ├── esp_driver_sdspi
+│   │   ├── esp_driver_spi
+│   │   ├── esp_driver_touch_sens
+│   │   ├── esp_driver_tsens
+│   │   ├── esp_driver_uart
+│   │   ├── esp_driver_usb_serial_jtag
+│   │   ├── esp_eth
+│   │   ├── esp_event
+│   │   ├── esp_gdbstub
+│   │   ├── esp_hid
+│   │   ├── esp_http_client
+│   │   ├── esp_http_server
+│   │   ├── esp_https_ota
+│   │   ├── esp_https_server
+│   │   ├── esp_hw_support
+│   │   ├── esp_lcd
+│   │   ├── esp_local_ctrl
+│   │   ├── esp_mm
+│   │   ├── esp_netif
+│   │   ├── esp_netif_stack
+│   │   ├── esp_partition
+│   │   ├── esp_phy
+│   │   ├── esp_pm
+│   │   ├── esp_psram
+│   │   ├── esp_ringbuf
+│   │   ├── esp_rom
+│   │   ├── esp_system
+│   │   ├── esp_timer
+│   │   ├── esp_vfs_console
+│   │   ├── esp_wifi
+│   │   ├── espcoredump
+│   │   ├── esptool_py
+│   │   ├── fatfs
+│   │   ├── freertos
+│   │   ├── hal
+│   │   ├── heap
+│   │   ├── http_parser
+│   │   ├── idf_test
+│   │   ├── ieee802154
+│   │   ├── json
+│   │   ├── log
+│   │   ├── lwip
+│   │   ├── main
+│   │   ├── mbedtls
+│   │   ├── mqtt
+│   │   ├── newlib
+│   │   ├── nvs_flash
+│   │   ├── nvs_sec_provider
+│   │   ├── openthread
+│   │   ├── partition_table
+│   │   ├── perfmon
+│   │   ├── protobuf-c
+│   │   ├── protocomm
+│   │   ├── pthread
+│   │   ├── safety
+│   │   ├── sdmmc
+│   │   ├── soc
+│   │   ├── spi_flash
+│   │   ├── spiffs
+│   │   ├── tcp_transport
+│   │   ├── ulp
+│   │   ├── unity
+│   │   ├── usb
+│   │   ├── vfs
+│   │   ├── wear_levelling
+│   │   ├── wifi_provisioning
+│   │   ├── wpa_supplicant
+│   │   └── xtensa
+│   ├── flash_app_args
+│   ├── flash_args
+│   ├── flash_args.in
+│   ├── flash_bootloader_args
+│   ├── flash_project_args
+│   ├── flasher_args.json
+│   ├── gdbinit
+│   │   ├── connect
+│   │   ├── gdbinit
+│   │   ├── prefix_map
+│   │   ├── py_extensions
+│   │   └── symbols
+│   ├── kconfigs.in
+│   ├── kconfigs_projbuild.in
+│   ├── ldgen_libraries
+│   ├── ldgen_libraries.in
+│   ├── log
+│   │   ├── idf_py_stderr_output_71268
+│   │   ├── idf_py_stderr_output_71588
+│   │   ├── idf_py_stderr_output_76342
+│   │   ├── idf_py_stderr_output_76626
+│   │   ├── idf_py_stderr_output_76998
+│   │   ├── idf_py_stderr_output_77098
+│   │   ├── idf_py_stdout_output_71268
+│   │   ├── idf_py_stdout_output_71588
+│   │   ├── idf_py_stdout_output_76342
+│   │   ├── idf_py_stdout_output_76626
+│   │   ├── idf_py_stdout_output_76998
+│   │   └── idf_py_stdout_output_77098
+│   ├── partition-table-flash_args
+│   ├── partition_table
+│   │   └── partition-table.bin
+│   ├── project_description.json
+│   ├── project_elf_src_esp32.c
+│   └── x509_crt_bundle.S
+├── components
+│   ├── comm_wifi
+│   │   ├── CMakeLists.txt
+│   │   ├── wifi_comm.c
+│   │   └── wifi_comm.h
+│   ├── control
+│   │   ├── CMakeLists.txt
+│   │   ├── control_task.c
+│   │   └── control_task.h
+│   ├── drivers_motors
+│   │   ├── CMakeLists.txt
+│   │   ├── motors_driver.c
+│   │   └── motors_driver.h
+│   ├── drivers_sensors
+│   │   ├── CMakeLists.txt
+│   │   ├── sensors.c
+│   │   └── sensors.h
+│   └── safety
+│       ├── CMakeLists.txt
+│       ├── safety_supervisor.c
+│       └── safety_supervisor.h
+├── main
+│   ├── CMakeLists.txt
+│   ├── Kconfig.projbuild
+│   └── app_main.c
+├── sdkconfig
+├── sdkconfig.ci
+├── sdkconfig.ci.c3eco7
+├── sdkconfig.ci.esp32c2_xtal26m
+├── sdkconfig.ci.esp32c2eco4_xtal26m
+├── sdkconfig.ci.ft
+├── sdkconfig.ci.rrm
+├── sdkconfig.ci.wnm
+├── sdkconfig.ci.wpa_psk
+├── sdkconfig.defaults
+└── sdkconfig.old
+
+135 directories, 106 files

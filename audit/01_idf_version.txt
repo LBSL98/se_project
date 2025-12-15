@@ -1,0 +1,2 @@
+ESP-IDF v5.3.4-603-g563f462986
+/home/brunoonurb/esp/esp-idf/tools/idf.py

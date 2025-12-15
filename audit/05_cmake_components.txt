@@ -1,0 +1,35 @@
+===== components/comm_wifi/CMakeLists.txt =====
+idf_component_register(
+    SRCS "wifi_comm.c"
+    INCLUDE_DIRS "."
+    REQUIRES esp_wifi esp_netif nvs_flash
+)
+
+===== components/control/CMakeLists.txt =====
+idf_component_register(
+    SRCS "control_task.c"
+    INCLUDE_DIRS "."
+    PRIV_REQUIRES safety
+)
+
+===== components/drivers_motors/CMakeLists.txt =====
+idf_component_register(
+    SRCS "motors_driver.c"
+    INCLUDE_DIRS "."
+    REQUIRES driver
+)
+
+===== components/drivers_sensors/CMakeLists.txt =====
+idf_component_register(
+    SRCS "sensors.c"
+    INCLUDE_DIRS "."
+    REQUIRES driver
+)
+
+===== components/safety/CMakeLists.txt =====
+idf_component_register(
+    SRCS "safety_supervisor.c"
+    INCLUDE_DIRS "."
+    REQUIRES freertos drivers_motors
+)
+

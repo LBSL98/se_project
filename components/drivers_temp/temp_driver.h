@@ -1,20 +1,19 @@
 #pragma once
+
 #include <stdbool.h>
+#include <stdint.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+#include "esp_err.h"
 
-void  temp_driver_init(void);
+esp_err_t temp_driver_init(int dht_gpio, int fan_gpio, float setpoint_c);
 
-float temp_driver_get_last_temperature(void);
-float temp_driver_get_last_humidity(void);
+void  temp_driver_set_point(float setpoint_c);
+float temp_driver_get_point(void);
 bool  temp_driver_is_fan_on(void);
 
-/* Setpoint (o que sua main quer usar) */
-float temp_driver_get_point(void);
-void  temp_driver_set_point(float celsius);
+float temp_driver_get_setpoint_c(void);
+void  temp_driver_set_setpoint_c(float setpoint_c);
 
-#ifdef __cplusplus
-}
-#endif
+bool temp_driver_get_last_ok(float *temp_c, float *hum_percent, uint32_t *age_ms);
+
+

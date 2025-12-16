@@ -4,7 +4,7 @@
 #include "freertos/task.h"
 
 #include "esp_log.h"
-#include "safety_supervisor.h"   // control_cmd_t, safety_post_command()
+#include "safety_supervisor.h"   
 
 static const char *TAG = "control_task";
 
@@ -30,12 +30,12 @@ static void control_task_loop(void *arg)
     while (1) {
         iter++;
 
-#if CONTROL_SIMULATE_CRASH
-        if (iter > CONTROL_CRASH_AFTER_ITERS) {
-            ESP_LOGE(TAG, "Simulando travamento: encerrando control_task.");
-            vTaskDelete(NULL);
-        }
-#endif
+        #if CONTROL_SIMULATE_CRASH
+                if (iter > CONTROL_CRASH_AFTER_ITERS) {
+                    ESP_LOGE(TAG, "Simulando travamento: encerrando control_task.");
+                    vTaskDelete(NULL);
+                }
+        #endif
 
         // Exemplo simples: sobe 10..80 e volta
         speed += 10;
@@ -51,7 +51,6 @@ static void control_task_loop(void *arg)
             ESP_LOGW(TAG, "Fila do safety cheia/indisponível. Comando descartado.");
         }
 
-        // log mais leve (a cada ~1s)
         if ((iter % 10) == 0) {
             ESP_LOGI(TAG, "cmd speed=%d%% (iter=%lu)", speed, (unsigned long)iter);
         }

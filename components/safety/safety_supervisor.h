@@ -2,7 +2,7 @@
 #define SAFETY_SUPERVISOR_H
 
 #include <stdint.h>
-#include "freertos/FreeRTOS.h"  // BaseType_t
+#include "freertos/FreeRTOS.h"  
 
 #ifdef __cplusplus
 extern "C" {

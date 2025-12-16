@@ -1,139 +1,154 @@
-#include <stdbool.h>
-#include <stdint.h>
+#include "temp_driver.h"
+
+#include <stdio.h>
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "freertos/portmacro.h"
-
-#include "esp_log.h"
-#include "esp_err.h"
 
 #include "driver/gpio.h"
-#include "dht.h"            // esp-idf-lib/dht
+#include "esp_log.h"
+#include "esp_timer.h"
 
-#include "temp_driver.h"
-
-/* ===== Hardware (SEU CABEAMENTO ATUAL) ===== */
-#define DHT_GPIO   GPIO_NUM_17   // DHT11 DATA
-#define FAN_GPIO   GPIO_NUM_16   // FAN (transistor) control
+#include "dht.h"
 
 static const char *TAG = "temp_driver";
 
-/* Controle */
-static float s_setpointC = 25.0f;
-static const float s_hystC = 1.0f;
+static int   s_dht_gpio = -1;
+static int   s_fan_gpio = -1;
+static float s_setpoint_c = 25.0f;
 
-/* Estado */
-static bool  s_fanCmd        = false;
-static float s_last_tempC    = 0.0f;
-static float s_last_humidity = 0.0f;
+static volatile bool  s_fan_on     = false;
+static volatile bool  s_last_ok    = false;
+static volatile float s_last_temp  = 0.0f;
+static volatile float s_last_hum   = 0.0f;
+static volatile int64_t s_last_ok_us = 0;
 
-static portMUX_TYPE s_mux = portMUX_INITIALIZER_UNLOCKED;
+static float clampf(float v, float lo, float hi)
+{
+    if (v < lo) return lo;
+    if (v > hi) return hi;
+    return v;
+}
 
-static void temp_driver_task(void *pv)
+static void fan_apply(bool on)
+{
+    s_fan_on = on;
+    gpio_set_level(s_fan_gpio, on ? 1 : 0);
+}
+
+static void temp_task(void *pv)
 {
     (void)pv;
 
-    // DHT11 costuma precisar de um tempo após boot
-    vTaskDelay(pdMS_TO_TICKS(2000));
+    vTaskDelay(pdMS_TO_TICKS(2000)); // logo no começo da task, antes do while(1)
 
     while (1) {
-        float temp = 0.0f, hum = 0.0f;
+        int16_t temperature = 0;
+        int16_t humidity = 0;
 
-        // Tenta ler (não leia mais rápido que ~1s no DHT11)
-        esp_err_t err = dht_read_float_data(DHT_TYPE_DHT11, DHT_GPIO, &hum, &temp);
-        if (err != ESP_OK) {
-            ESP_LOGW(TAG, "FAIL lendo DHT11 (%s)", esp_err_to_name(err));
-            vTaskDelay(pdMS_TO_TICKS(2500));
-            continue;
+        const esp_err_t err = dht_read_data(DHT_TYPE_DHT11, s_dht_gpio, &humidity, &temperature);
+        const int64_t now_us = esp_timer_get_time();
+
+        if (err == ESP_OK) {
+            s_last_ok = true;
+            s_last_ok_us = now_us;
+
+            s_last_temp = ((float)temperature) / 10.0f;
+            s_last_hum  = ((float)humidity)    / 10.0f;
+
+            // Controle simples ON/OFF por setpoint
+            const bool need_fan = (s_last_temp >= s_setpoint_c);
+            fan_apply(need_fan);
+
+            ESP_LOGI(TAG, "T=%.1fC  H=%.0f%%  Set=%.1fC  FAN=%s",
+                        (double)s_last_temp, (double)s_last_hum, (double)s_setpoint_c,
+                     s_fan_on ? "ON" : "OFF");
+        } else {
+            s_last_ok = false;
+            // Mantém última leitura válida (se existir) e não mexe em s_last_ok_us
+            ESP_LOGW(TAG, "Falha leitura DHT11 (err=%d). Mantendo ultima leitura valida.", (int)err);
         }
 
-        portENTER_CRITICAL(&s_mux);
-        s_last_tempC    = temp;
-        s_last_humidity = hum;
+        vTaskDelay(pdMS_TO_TICKS(2500)); // logo no começo da task, antes do while(1)
 
-        float sp = s_setpointC;
-
-        // histerese
-        if (!s_fanCmd && temp >= (sp + s_hystC)) {
-            s_fanCmd = true;
-        } else if (s_fanCmd && temp <= (sp - s_hystC)) {
-            s_fanCmd = false;
-        }
-
-        bool fan = s_fanCmd;
-        portEXIT_CRITICAL(&s_mux);
-
-        gpio_set_level(FAN_GPIO, fan ? 1 : 0);
-
-        ESP_LOGI(TAG, "T=%.1fC  H=%.0f%%  Set=%.1fC  FAN=%s",
-                 temp, hum, sp, fan ? "ON" : "OFF");
-
-        vTaskDelay(pdMS_TO_TICKS(2500));
     }
 }
 
-void temp_driver_init(void)
+esp_err_t temp_driver_init(int dht_gpio, int fan_gpio, float setpoint_c)
 {
-    // FAN: saída
-    gpio_config_t fan_conf = {0};
-    fan_conf.pin_bit_mask = (1ULL << FAN_GPIO);
-    fan_conf.mode         = GPIO_MODE_OUTPUT;
-    fan_conf.pull_up_en   = GPIO_PULLUP_DISABLE;
-    fan_conf.pull_down_en = GPIO_PULLDOWN_DISABLE;
-    fan_conf.intr_type    = GPIO_INTR_DISABLE;
-    gpio_config(&fan_conf);
-    gpio_set_level(FAN_GPIO, 0);
+    if (dht_gpio < 0 || fan_gpio < 0) {
+        return ESP_ERR_INVALID_ARG;
+    }
 
-    // DHT: pull-up interno ajuda (mas o ideal é ter pull-up externo também)
-    gpio_set_pull_mode(DHT_GPIO, GPIO_PULLUP_ONLY);
+    s_dht_gpio = dht_gpio;
+    gpio_set_pull_mode((gpio_num_t)s_dht_gpio, GPIO_PULLUP_ONLY);
+
+    s_fan_gpio = fan_gpio;
+    s_setpoint_c = clampf(setpoint_c, 0.0f, 60.0f);
+
+    // FAN como saída
+    gpio_config_t io = {
+        .pin_bit_mask = (1ULL << (uint32_t)s_fan_gpio),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    ESP_ERROR_CHECK(gpio_config(&io));
+
+    fan_apply(false);
 
     ESP_LOGI(TAG, "Init DHT11 GPIO=%d, FAN GPIO=%d, setpoint=%.1fC",
-             (int)DHT_GPIO, (int)FAN_GPIO, s_setpointC);
+             s_dht_gpio, s_fan_gpio, (double)s_setpoint_c);
 
-    xTaskCreate(temp_driver_task, "temp_driver_task", 4096, NULL, 5, NULL);
+    BaseType_t ok = xTaskCreate(temp_task, "temp_task", 4096, NULL, 5, NULL);
+    return (ok == pdPASS) ? ESP_OK : ESP_FAIL;
 }
 
-float temp_driver_get_last_temperature(void)
+void temp_driver_set_point(float setpoint_c)
 {
-    portENTER_CRITICAL(&s_mux);
-    float v = s_last_tempC;
-    portEXIT_CRITICAL(&s_mux);
-    return v;
-}
-
-float temp_driver_get_last_humidity(void)
-{
-    portENTER_CRITICAL(&s_mux);
-    float v = s_last_humidity;
-    portEXIT_CRITICAL(&s_mux);
-    return v;
-}
-
-bool temp_driver_is_fan_on(void)
-{
-    portENTER_CRITICAL(&s_mux);
-    bool v = s_fanCmd;
-    portEXIT_CRITICAL(&s_mux);
-    return v;
+    s_setpoint_c = clampf(setpoint_c, 0.0f, 60.0f);
 }
 
 float temp_driver_get_point(void)
 {
-    portENTER_CRITICAL(&s_mux);
-    float v = s_setpointC;
-    portEXIT_CRITICAL(&s_mux);
-    return v;
+    return s_setpoint_c;
 }
 
-void temp_driver_set_point(float celsius)
+bool temp_driver_is_fan_on(void)
 {
-    if (celsius < 0.0f)  celsius = 0.0f;
-    if (celsius > 60.0f) celsius = 60.0f;
+    return s_fan_on;
+}
 
-    portENTER_CRITICAL(&s_mux);
-    s_setpointC = celsius;
-    portEXIT_CRITICAL(&s_mux);
+// ---- Compatibilidade com comm_blynk.c ----
 
-    ESP_LOGI(TAG, "Setpoint atualizado: %.1fC", celsius);
+float temp_driver_get_setpoint_c(void)
+{
+    return temp_driver_get_point();
+}
+
+void temp_driver_set_setpoint_c(float setpoint_c)
+{
+    temp_driver_set_point(setpoint_c);
+}
+
+// ---- Última leitura ----
+
+bool temp_driver_get_last_ok(float *temp_c, float *hum_percent, uint32_t *age_ms)
+{
+    if (temp_c)      *temp_c = s_last_temp;
+    if (hum_percent) *hum_percent = s_last_hum;
+
+    if (age_ms) {
+        if (s_last_ok_us <= 0) {
+            *age_ms = UINT32_MAX;
+        } else {
+            const int64_t now_us = esp_timer_get_time();
+            const int64_t delta_us = (now_us - s_last_ok_us);
+            *age_ms = (delta_us <= 0) ? 0 : (uint32_t)(delta_us / 1000);
+        }
+    }
+
+    // true = a ÚLTIMA tentativa de leitura deu OK
+    return s_last_ok;
 }

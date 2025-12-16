@@ -1,10 +1,3 @@
-/* WiFi station Example - adaptado para componente comm_wifi
-
-   Baseado no exemplo oficial do ESP-IDF. Esta versão expõe a função
-   wifi_comm_init() em vez de app_main(), para ser chamada a partir
-   de main/app_main.c.
-*/
-
 #include <string.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -20,7 +13,6 @@
 
 #include "wifi_comm.h"
 
-/* Configuração de Wi-Fi via sdkconfig */
 #define EXAMPLE_ESP_WIFI_SSID      CONFIG_ESP_WIFI_SSID
 #define EXAMPLE_ESP_WIFI_PASS      CONFIG_ESP_WIFI_PASSWORD
 #define EXAMPLE_ESP_MAXIMUM_RETRY  CONFIG_ESP_MAXIMUM_RETRY
@@ -56,7 +48,6 @@
 #define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WAPI_PSK
 #endif
 
-/* Event group para sinalizar conexão/falha */
 static EventGroupHandle_t s_wifi_event_group;
 
 #define WIFI_CONNECTED_BIT BIT0
@@ -66,7 +57,6 @@ static const char *TAG = "wifi_station";
 
 static int s_retry_num = 0;
 
-/* Handles de instância para registrar/desregistrar corretamente */
 static esp_event_handler_instance_t s_instance_any_id;
 static esp_event_handler_instance_t s_instance_got_ip;
 
@@ -110,7 +100,6 @@ wifi_init_sta(void)
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
 
-    /* Registrar handlers de evento usando INSTANCES */
     ESP_ERROR_CHECK(esp_event_handler_instance_register(
                         WIFI_EVENT,
                         ESP_EVENT_ANY_ID,
@@ -149,7 +138,6 @@ wifi_init_sta(void)
 
     ESP_LOGI(TAG, "wifi_init_sta finished.");
 
-    /* Espera até conectar ou falhar */
     EventBits_t bits = xEventGroupWaitBits(
         s_wifi_event_group,
         WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
@@ -167,7 +155,6 @@ wifi_init_sta(void)
         ESP_LOGE(TAG, "UNEXPECTED EVENT");
     }
 
-    /* Desregistrar usando as INSTANCES corretas */
     ESP_ERROR_CHECK(esp_event_handler_instance_unregister(
                         IP_EVENT,
                         IP_EVENT_STA_GOT_IP,
@@ -181,11 +168,9 @@ wifi_init_sta(void)
     vEventGroupDelete(s_wifi_event_group);
 }
 
-/* Função pública chamada a partir de app_main() */
 void
 wifi_comm_init(void)
 {
-    /* Initialize NVS */
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES ||
         ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
